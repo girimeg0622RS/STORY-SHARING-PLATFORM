@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}{{ story.title }}{% endblock %}
+{% block content %}
+    <h2>{{ story.title }}</h2>
+    <p>By {{ story.author.username }}</p>
+    <p>{{ story.content }}</p>
+    <h3>Comments</h3>
+    {% for comment in story.comments %}
+        <div class="comment">
+            <p>{{ comment.content }}</p>
+            <p>By {{ comment.user.username }} on {{ comment.created_at }}</p>
+        </div>
+    {% else %}
+        <p>No comments yet.</p>
+    {% endfor %}
+    <h4>Add a Comment</h4>
+    <form method="POST">
+        <textarea name="content" placeholder="Your comment" required></textarea>
+        <button type="submit">Submit Comment</button>
+    </form>
+{% endblock %}

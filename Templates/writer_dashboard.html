@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Writer Dashboard{% endblock %}
+{% block content %}
+    <h2>Writer Dashboard</h2>
+    <h3>Your Stories</h3>
+    {% for story in stories %}
+        <div class="story-card">
+            <h4>{{ story.title }}</h4>
+            <a href="{{ url_for('story_view', story_id=story.id) }}">View</a>
+            <a href="{{ url_for('story_edit', story_id=story.id) }}">Edit</a>
+        </div>
+    {% else %}
+        <p>You haven't uploaded any stories yet.</p>
+    {% endfor %}
+    <a href="{{ url_for('story_upload') }}">Upload New Story</a>
+{% endblock %}
